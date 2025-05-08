@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Registro.dart'; // import registro Screen 
+import 'Registro.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -214,14 +214,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.pushReplacement(
                               context,
                               PageRouteBuilder(
+                                transitionDuration: const Duration(milliseconds: 600),
                                 pageBuilder: (context, animation, secondaryAnimation) => RegistroScreen(),
                                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                  final offsetAnimation = Tween<Offset>(
-                                    begin: Offset(1.0, 0.0), // Pantalla siguiente entra desde la derecha
-                                    end: Offset.zero,
-                                  ).animate(animation);
-                                  
-                                  return SlideTransition(position: offsetAnimation, child: child,
+                                  // Controla la opacidad (desvanecimiento)
+                                  var fadeAnimation = CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeInOut,
+                                  );
+
+                                  return FadeTransition(
+                                    opacity: fadeAnimation,
+                                    child: child,
                                   );
                                 },
                               ),

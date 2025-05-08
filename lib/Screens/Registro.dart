@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Home.dart'; // import home Screen
+import 'Home.dart';
 
 class RegistroScreen extends StatefulWidget {
   @override
@@ -30,25 +30,24 @@ class _RegistroScreenState extends State<RegistroScreen> {
               child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacement(
-                    context,
-                    PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 400),
-                        pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
-                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                          const begin = Offset(-1.0, -0.0); // desde la derecha
-                          const end = Offset.zero;
-                          const curve = Curves.ease;
+                              context,
+                              PageRouteBuilder(
+                                transitionDuration: const Duration(milliseconds: 600),
+                                pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  // Controla la opacidad (desvanecimiento)
+                                  var fadeAnimation = CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeInOut,
+                                  );
 
-                          final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-                          final offsetAnimation = animation.drive(tween);
-
-                          return SlideTransition(
-                            position: offsetAnimation,
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
+                                  return FadeTransition(
+                                    opacity: fadeAnimation,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                            );
                   },
                 child: const Text(
                   'Volver',
