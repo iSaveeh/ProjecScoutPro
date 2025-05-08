@@ -197,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     const SizedBox(height: 20),
 
-                    // ===Link to Sign Up===
+                    // === Link to Sign Up ===
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -211,25 +211,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               PageRouteBuilder(
                                 pageBuilder: (context, animation, secondaryAnimation) => RegistroScreen(),
                                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                  const begin = Offset(1.0, 0.0); // Nueva pantalla entra desde la derecha
-                                  const end = Offset.zero;
-                                  const reverseBegin = Offset(-1.0, 0.0); // Pantalla anterior entra desde la izquierda
-
-                                  final tween = Tween(begin: begin, end: end)
-                                      .chain(CurveTween(curve: Curves.easeInOut));
-                                  final reverseTween = Tween(begin: reverseBegin, end: end)
-                                      .chain(CurveTween(curve: Curves.easeInOut));
-
-                                  return SlideTransition(
-                                    position: animation.status == AnimationStatus.reverse
-                                        ? animation.drive(reverseTween) // Al volver
-                                        : animation.drive(tween),       // Al ir
-                                    child: child,
+                                  final offsetAnimation = Tween<Offset>(
+                                    begin: Offset(1.0, 0.0), // Pantalla siguiente entra desde la derecha
+                                    end: Offset.zero,
+                                  ).animate(animation);
+                                  
+                                  return SlideTransition(position: offsetAnimation, child: child,
                                   );
                                 },
                               ),

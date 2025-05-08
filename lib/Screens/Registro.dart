@@ -29,10 +29,10 @@ class _RegistroScreenState extends State<RegistroScreen> {
               ),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 500),
+                        transitionDuration: Duration(milliseconds: 400),
                         pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
                         transitionsBuilder: (context, animation, secondaryAnimation, child) {
                           const begin = Offset(-1.0, -0.0); // desde la derecha
@@ -49,8 +49,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
                         },
                       ),
                     );
-                  
-                },
+                  },
                 child: const Text(
                   'Volver',
                   style: TextStyle(
