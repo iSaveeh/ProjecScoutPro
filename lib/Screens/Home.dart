@@ -213,8 +213,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => RegistroScreen(),
+                              PageRouteBuilder(
+                                pageBuilder: (context, animation, secondaryAnimation) => RegistroScreen(),
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  const begin = Offset(1.0, 0.0); // Nueva pantalla entra desde la derecha
+                                  const end = Offset.zero;
+                                  const reverseBegin = Offset(-1.0, 0.0); // Pantalla anterior entra desde la izquierda
+
+                                  final tween = Tween(begin: begin, end: end)
+                                      .chain(CurveTween(curve: Curves.easeInOut));
+                                  final reverseTween = Tween(begin: reverseBegin, end: end)
+                                      .chain(CurveTween(curve: Curves.easeInOut));
+
+                                  return SlideTransition(
+                                    position: animation.status == AnimationStatus.reverse
+                                        ? animation.drive(reverseTween) // Al volver
+                                        : animation.drive(tween),       // Al ir
+                                    child: child,
+                                  );
+                                },
                               ),
                             );
                           },
@@ -230,16 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     )
 
-                    
-                    
-
-
-
-
-
-
-
-
+                  
                   ],
                 ),
               ),

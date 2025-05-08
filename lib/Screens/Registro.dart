@@ -31,16 +31,31 @@ class _RegistroScreenState extends State<RegistroScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(), // Navigate to HomeScreen
-                    )
-                  );
+                    PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 500),
+                        pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          const begin = Offset(-1.0, -0.0); // desde la derecha
+                          const end = Offset.zero;
+                          const curve = Curves.ease;
+
+                          final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                          final offsetAnimation = animation.drive(tween);
+
+                          return SlideTransition(
+                            position: offsetAnimation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  
                 },
                 child: const Text(
-                  '← Volver',
+                  'Volver',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
+                    fontSize: 21,
                     fontFamily: 'Days One',
                   ),
                 ),
@@ -94,7 +109,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Crear tu cuenta',
+                      'Crea tu cuenta',
                       style: TextStyle(
                         fontFamily: 'Days One',
                         fontSize: 30,
@@ -103,6 +118,147 @@ class _RegistroScreenState extends State<RegistroScreen> {
                       ),
                     ),
                   const SizedBox(height: 25),
+
+                  // === Email TextBox ===
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF2F2F2),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const TextField(
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontFamily: 'Carme',
+                      ),
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.email_outlined),
+                        hintText: 'Correo electrónico',
+                        hintStyle: TextStyle(
+                          color: Color(0xFFA6A6A6),
+                          fontSize: 25,
+                          fontFamily: 'Carme',
+                        ),
+                        border: InputBorder.none
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 1),
+
+                  // === User TextBox ===
+
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF2F2F2),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const TextField(
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontFamily: 'Carme',
+                      ),
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.person_outline),
+                        hintText: 'Nombre de usuario',
+                        hintStyle: TextStyle(
+                          color: Color(0xFFA6A6A6),
+                          fontSize: 25,
+                          fontFamily: 'Carme',
+                        ),
+                        border: InputBorder.none
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  // === Password Container ===
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF2F2F2),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const TextField(
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontFamily: 'Carme',
+                      ),
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.lock_outline),
+                        hintText: 'Contraseña',
+                        hintStyle: TextStyle(
+                          color: Color(0xFFA6A6A6),
+                          fontSize: 25,
+                          fontFamily: 'Carme',
+                        ),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // === Confirm Password Container ===
+
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF2F2F2),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const TextField(
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontFamily: 'Carme',
+                      ),
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.lock_outline),
+                        hintText: 'Confirmar contraseña',
+                        hintStyle: TextStyle(
+                          color: Color(0xFFA6A6A6),
+                          fontSize: 25,
+                          fontFamily: 'Carme',
+                        ),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 50),
+
+                  // === Button to Register ===
+                  Container(
+                    width: double.infinity,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF001121),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        // Add your registration logic here
+                      },
+                      child: const Text(
+                        'Registrarse',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: 'Days One',
+                        ),
+                      ),
+                    ),
+                  ),
 
                   
                 ],
