@@ -30,25 +30,25 @@ class _RegistroScreenState extends State<RegistroScreen> {
               child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacement(
-                              context,
-                              PageRouteBuilder(
-                                transitionDuration: const Duration(milliseconds: 600),
-                                pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
-                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                  // Controla la opacidad (desvanecimiento)
-                                  var fadeAnimation = CurvedAnimation(
-                                    parent: animation,
-                                    curve: Curves.easeInOut,
-                                  );
+                    context,
+                    PageRouteBuilder(
+                      transitionDuration: const Duration(milliseconds: 600),
+                      pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                      // Controla la opacidad (desvanecimiento)
+                        var fadeAnimation = CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.easeInOut,
+                          );
 
-                                  return FadeTransition(
-                                    opacity: fadeAnimation,
-                                    child: child,
-                                  );
-                                },
-                              ),
-                            );
-                  },
+                        return FadeTransition(
+                          opacity: fadeAnimation,
+                          child: child,
+                              );
+                            },
+                          ),
+                        );
+                      },
                 child: const Text(
                   'Volver',
                   style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Registro.dart';
+import 'BackupPassword.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -156,7 +157,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: () {
-                          // Acción del botón
+                          Navigator.pushReplacement(
+                            context,
+                            PageRouteBuilder(
+                              transitionDuration: const Duration(milliseconds: 600),
+                              pageBuilder: (context, animation, secondaryAnimation) => BackupPassword(),
+                              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                // Controla la opacidad (desvanecimiento)
+                                var fadeAnimation = CurvedAnimation(
+                                  parent: animation,
+                                  curve: Curves.easeInOut,
+                                );
+
+                                return FadeTransition(
+                                  opacity: fadeAnimation,
+                                  child: child,
+                                );
+                              },
+                            ),
+                          );
                         },
                         child: const Text(
                           '¿Olvidaste la contraseña?',
@@ -241,9 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ],
-                    )
-
-                  
+                    ),
                   ],
                 ),
               ),
