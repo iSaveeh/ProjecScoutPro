@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Scout Pro',
-      home: SplashScreen(), // Aquí llamamos a la pantalla de carga
+      home: MenuScreen(), // Aquí llamamos a la pantalla de carga
     );
   }
 }
