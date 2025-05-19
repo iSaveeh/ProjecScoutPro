@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "978351718605",
+    "project_id": "scoutpro-10",
+    "storage_bucket": "scoutpro-10.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978351718605:android:fd9541873b207c809ca984",
+        "android_client_info": {
+          "package_name": "com.scoutpro.scoutpro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1g1ySyaCqyJFtZ2gWDv7yW_lExblfDtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

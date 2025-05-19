@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:7.4.2")      // Ajusta la versión si es necesario
+        classpath("com.google.gms:google-services:4.3.15")     // Plugin de Google Services para Firebase
+    }
+}
+
 allprojects {
     repositories {
         google()

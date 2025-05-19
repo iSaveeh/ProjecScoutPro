@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'Screens/Splash.dart';
-import 'Screens/Menu.dart';
+// Asegúrate de que las rutas a tus pantallas sean correctas
+import 'Screens/Splash.dart'; // Tenías esta importación antes
+import 'Screens/Menu.dart';   // Y esta para tu pantalla principal
 
+// Esta era la forma en que tenías tu función main originalmente
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -10,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Scout Pro',
-      home: MenuScreen(), // Aquí llamamos a la pantalla de carga
+      home: MenuScreen(), // Aquí llamabas a tu pantalla MenuScreen
     );
   }
 }
